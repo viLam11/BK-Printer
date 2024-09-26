@@ -7,13 +7,13 @@ const authController = require('../controllers/auth.Controller');
 
 // [POST] /signUp
 router.post('/signUp', [
-    // body('email')
-    //     .trim()
-    //     .isEmail(),
-    // body('password')
-    //     .trim()
-    //     .isLength({min: 5})
-    //     .withMessage('Password mus be at leat 5 characters long')
+    body('email')
+        .trim()
+        .isEmail(),
+    body('password')
+        .trim()
+        .isLength({min: 5})
+        .withMessage('Password mus be at leat 5 characters long')
 ] ,authController.postSignUp);
 
 
@@ -23,7 +23,7 @@ router.post('/login', [
         .isEmail()
         .withMessage('Invalid email format')
         .custom((value) => {
-            if(!value.endsWith('@hcmut.ed.vn')) {
+            if(!value.endsWith('@hcmut.edu.vn')) {
                 throw new Error('Invaled email')
             }
             return true;
